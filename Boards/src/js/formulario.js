@@ -5,20 +5,27 @@ import {ListaBoards} from "./classes/boards-list-class"
 let afegir = new ListaBoards()
 console.log("1")
 
-export function CreaHTMLFormulariAfegir(){ // L'html es cambiará pel maquetat a M09
+export function CreaHTMLFormulariAfegir(){
     let html = `
-
-        <label>Boards<br></label><input id='title' type="text"><br><br>
-        <label>Descripció<br></label><textarea id='descripcio' type="text"></textarea><br><br>
-        <label>Incidència</label>
-        <select id="incidencia">
-            <option value="1">Opcio 1</option>
-            <option value="2">Opcio 2</option>
-            <option value="3">Opcio 3</option>
-            <option value="4">Opcio 4</option>
-        </select><br><br>
-        <button id='guardar'>Guardar</button>
-
+    <div class="formulari">
+        <div class="formulari__panell">
+            <div class="formulari__capcalera">
+                <h1>Boards</h1>
+            </div>
+            <div class="formulari__contingut">
+                <label>Boards<br></label><input id='title' type="text"><br><br>
+                <label>Descripció<br></label><textarea id='descripcio' type="text"></textarea><br><br>
+                <label>Incidència</label>
+                <select id="incidencia">
+                    <option value="1">Opcio 1</option>
+                    <option value="2">Opcio 2</option>
+                    <option value="3">Opcio 3</option>
+                    <option value="4">Opcio 4</option>
+                </select><br><br>
+                <button id='guardar'>Guardar</button>
+            </div>
+        </div>
+    </div>
     `
     
     var div = document.createElement("div");
