@@ -34,14 +34,13 @@ body {
 
 .formulari {
   background: white;
-  width: 600px;
-  height: 750px;
+  width: 90%;
   border-radius: 9px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   display: inline-block;
   margin-top: 3%;
   font-family: "JSuiteFont-Subtitle";
-  margin-left: 33%;
+  margin-left: 5%;
   overflow: auto;
 }
 
