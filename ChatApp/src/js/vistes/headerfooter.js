@@ -8,19 +8,13 @@ import footer from "../../footer.html"
 import head from "../../head.html"
 
 export const head1 = () => {
-    let div = document.createElement('div');
-    div.innerHTML=head
-    document.body.append(div);
+    $("body").append(head)
 }
 
 export const header1 = () => {
-    let div = document.createElement('div');
-    div.innerHTML=header
-    document.body.append(div);
+    $("body").append(header)
 }
 
 export const footer1 = () => {
-    let div2 = document.createElement('div2');
-    div2.innerHTML=footer
-    document.body.append(div2);
+    $("body").append(footer)
 }

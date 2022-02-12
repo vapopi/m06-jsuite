@@ -1,3 +1,4 @@
+// import 'jquery';
 import { Messages } from "../classes/Messages.js";
 import { MessagesList } from "../classes/MessagesList.js";
 import { UsersList } from "../../../_commons/js/classes/UsersList.js";
@@ -10,128 +11,68 @@ export const formulario02 = () => {
     let llista2 = new UsersList();
     let llista3 = new GroupsList();
 
-    
-    let dropdown = document.getElementById('destinatari');
-    dropdown.length = 0;
-
-    let dropdown2 = document.getElementById('grup');
-    dropdown2.length = 0;
-
     let option, option2;
-
-    // Creació del desplegable dels usuaris (url JSON)
-/*     async function usuaris() {
-        const url = await llista2.obtenirDades();
-        const request = new XMLHttpRequest();
-        request.open('GET', url, true);
-        
-        request.onload = function() {
-          if (request.status === 200) {
-            const data = JSON.parse(request.responseText);
-            let option;
-            for (let i = 0; i < data.length; i++) {
-              option = document.createElement('option');
-              option.text = data[i].username;
-              dropdown.add(option);
-            }
-           }
-        }
-        request.send();
-    }
-    usuaris(); */
 
     // Creació del desplegable dels usuaris (FIREBASE)
     const data = llista2.obtenirDades();
-
     data.then(
         function(value) {
             for (let i = 0; i < value.length; i++) {
-                option = document.createElement('option');
-                option.text = value[i].username;
-                dropdown.add(option);
+                option += '<option value="' + value[i].username + '">' + value[i].username + '</option>';
             }
+            $('#destinatari').append(option);
         }
     );
 
-/*  // Creació del desplegable dels grups (LOCALSTORAGE)
-
-    let dropdown3 = document.getElementById('grup');
-    
- 
-    dropdown3.length = 0;
-    var groups = JSON.parse(localStorage.getItem("groups"));
-    for (let i = 0; i < groups.length; i++) {
-        option2 = document.createElement('option');
-        option2.text = groups[i].name;
-        dropdown3.add(option2);
-    } */
-
-
     // Creació del desplegable dels grups (FIREBASE)
     const data2 = llista3.obtenirDades();
-    
     data2.then(
         function(value) {
             console.log(value)
             const newArr = value.filter((a) => a);
             for (let i = 0; i < newArr.length; i++) {
-                option2 = document.createElement('option');
-                option2.text = newArr[i].name;
-                dropdown2.add(option2);
+                option2 += '<option value="' + newArr[i].name + '">' + newArr[i].name + '</option>';
             }
+            $('#grup').append(option2);
         }
     );
     
 
     // Configuració de la visibilitat (RADIO BUTTONS)
-    document.getElementById('opcio1').checked = true;
+    $('#opcio1').attr('checked', true);
 
-    document.querySelector("#opcio1").addEventListener("click"  ,() => {
-    
-        var seleccio = document.getElementById('opcio1');
-        
-        if (seleccio.checked) {
-            document.getElementById('destinatari').disabled = true;
-            document.getElementById('grup').disabled = false;
+    $("#opcio1").on("click" , (event) => {
+        if($('#opcio1').is(':checked')) {
+            $('#destinatari').attr('disabled', true);
+            $('#grup').attr('disabled', false);
         }
     });
     
-    document.querySelector("#opcio2").addEventListener("click"  ,() => {
-    
-        var seleccio2 = document.getElementById('opcio2');
-    
-        if (seleccio2.checked) {
-            document.getElementById('destinatari').disabled = false;
-            document.getElementById('grup').disabled = true;
+    $("#opcio2").on("click" , (event) => {
+        if($('#opcio2').is(':checked')) {
+            $('#destinatari').attr('disabled', false);
+            $('#grup').attr('disabled', true);
         }
-    
     });
     
     // Configuració de l'enviament de dades
-    document.querySelector("#botoEnviar").addEventListener("click"  ,() => {
-        
+    $("#botoEnviar").on("click" , (event) => {
         event.preventDefault();
     
-        var seleccio = document.getElementById('opcio1');
-        var message = document.getElementById('missatge').value
-        var seleccionado = document.querySelector('input[name="opcio"]:checked').value;
+        var message = $('#missatge').val();
+        var seleccionado = $('input[type=radio][name="opcio"]:checked').val();
         
-        var select = document.getElementById('destinatari');
-        var select2 = document.getElementById('grup');
-        
-    
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    
-        if(seleccio.checked){
-            var grup = select2.options[select2.selectedIndex].value;
+        
+        if($('#opcio1').is(':checked')) {
+            var grup = $('#grup option:selected').text();
             let objMsg = new Messages(llista.autoincrementId(), 1, message, date+" "+time, seleccionado, grup);
             llista.setMessage(llista.autoincrementId(), objMsg);
             console.log(llista.autoincrementId())
         }else{
-            var usuari = select.options[select.selectedIndex].value;
-            console.log(llista.autoincrementId())
+            var usuari = $('#destinatari option:selected').text();
             let objMsg = new Messages(llista.autoincrementId(), 1, message, date+" "+time, seleccionado, usuari);
             llista.setMessage(llista.autoincrementId(), objMsg);
             console.log(llista)

@@ -6,15 +6,12 @@ export const formulario03 = () => {
     let llistaG = new GroupsList();
 
     // Configuració de l'enviament de dades
-    document.querySelector("#botoEnviar2").addEventListener("click"  ,() => {
-        
+    $("#botoEnviar2").on("click" , (event) => {
         event.preventDefault();
         
-        var nameGroup = document.getElementById('missatge').value;
-        
-        let objGrp = new Groups(llistaG.autoincrementId(), nameGroup, llistaG.autoincrementId()+1);
+        var nameGroup = $('#missatge').val();
+        let objGrp = new Groups(llistaG.autoincrementId(), nameGroup, llistaG.autoincrementId());
         llistaG.setGroup(llistaG.autoincrementId(), objGrp);
-        console.log(llistaG)
 
         alert("Grup creat amb exit");
 

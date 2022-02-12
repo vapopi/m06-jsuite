@@ -1,6 +1,8 @@
-export var formulario0 = () =>
+export let formulario0 = $("<div></div>", {
 
-`<div class="formulari">
+    id: "divPrincipal",
+    class: "llistat",
+    html: `<div class="formulari">
     <div class="formulari__panell">
         <div class="formulari__capcalera">
             <h1>ChatApp - Llistats</h1>
@@ -36,3 +38,5 @@ export var formulario0 = () =>
         </div>
     </div>
 </div>`
+
+})

@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require ('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { Resolver, Chunk } = require('webpack');
+var webpack = require('webpack');
 
 module.exports = {
     entry:{
@@ -68,6 +69,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            JQuery: 'jquery'
+        }),
 
         new HtmlWebPackPlugin({
             template: './src/index.html',

@@ -10,36 +10,28 @@ import { header1,footer1 } from "./headerfooter";
 
 export const formulario2 = () => {
 
-    let div = document.createElement('div');
+    $("body").append(formulario00)
     
-    div.innerHTML=formulario00
-    document.body.append(div);
-    
-    document.getElementById("botoLlistes").addEventListener("click"  ,() => {
-
-        div.innerHTML=formulario0
-        document.body.append(div);
+    $("#botoLlistes").on("click",function() {
+        $("#divPrincipal").hide();
+        $("body").append(formulario0)
         formulario01();
         footer1();
+    });   
 
-    });       
-
-    document.getElementById("botoMissatges").addEventListener("click"  ,() => {
-
-        div.innerHTML=formulario1
-        document.body.append(div);
+    $("#botoMissatges").on("click",function() {
+        $("#divPrincipal").hide();
+        $("body").append(formulario1);
         formulario02();
         footer1();
-
-    });     
+    });  
     
-    document.getElementById("botoGrups").addEventListener("click"  ,() => {
-
-        div.innerHTML=formulario3
-        document.body.append(div);
+    $("#botoGrups").on("click",function() {
+        $("#divPrincipal").hide();
+        $("body").append(formulario3);
         formulario03();
         footer1();
+    }); 
 
-    });  
 }
 

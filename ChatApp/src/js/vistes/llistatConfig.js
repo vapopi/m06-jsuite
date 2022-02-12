@@ -6,188 +6,86 @@ import { Messages } from "../classes/Messages.js";
 export const formulario01 = () => {
 
     // Funcio per crear la taula grups
-    function carregaGrups() {
-
-        // Carregar amb localstorage
-/*         var arr1 = new Array();
-
-        var Parent = document.getElementById('taulaGrups');
-
-        if(localStorage.getItem("groups") == null){
-            
-            localStorage.setItem("","groups");
-            var r = Parent.insertRow();
-            var cell1 = r.insertCell();
-            var cell2 = r.insertCell();
-
-            cell1.innerHTML = "Res a mostrar";
-            cell2.innerHTML = "Res a mostrar";
-
-        }else{
-            while(Parent.hasChildNodes())
-            {
-                Parent.removeChild(Parent.firstChild);
-            }
-            arr1 = JSON.parse(localStorage.getItem("groups"));
-            for(let i = 0; i < arr1.length; i++){
-                
-                var r = Parent.insertRow();
-                var cell1 = r.insertCell();
-                var cell2 = r.insertCell();
-
-                cell1.innerHTML = "ID: ".bold() + arr1[i].id;
-                cell2.innerHTML = "NOM: ".bold()+arr1[i].name;
-            }
-        } */
-
-        // Carregar amb firebase
+    $.fn.carregaGrups = function() {
         var llista = new GroupsList();
-        var Parent = document.getElementById('taulaGrups');
-
-        while(Parent.hasChildNodes())
-        {
-            Parent.removeChild(Parent.firstChild);
-        }
+        
+        $('#taulaGrups > tr').remove();
         const data = llista.obtenirDades();
         data.then(
             function(value) {
                 const newArr = value.filter((a) => a);
                 for (let i = 0; i < newArr.length; i++) {
-                    var r = Parent.insertRow();
-                    var cell1 = r.insertCell();
-                    var cell2 = r.insertCell();
-                    cell1.innerHTML = "ID: ".bold() + newArr[i].id;
-                    cell2.innerHTML = "NOM: ".bold()+ newArr[i].name;
+                    $('#taulaGrups').append('<tr><td>' + "ID: ".bold() + newArr[i].id +'</td><td>'+"NOM: ".bold()+ newArr[i].name + '</td></tr>');
                 }
             }
         );
     }
 
     // Funcio per crear la taula missatges
-    function carregaMissatges() {
-
-        // Carregar amb localstorage
-/*         var arr2 = new Array();
-
-        var Parent = document.getElementById('taulaMissatges');
-
-        if(localStorage.getItem("messages") == null){
-
-            var r = Parent.insertRow();
-            var cell1 = r.insertCell();
-            var cell2 = r.insertCell();
-            var cell3 = r.insertCell();
-
-            cell1.innerHTML = "Res a mostrar";
-            cell2.innerHTML = "Res a mostrar";
-            cell3.innerHTML = "Res a mostrar";
-
-        }else{
-            while(Parent.hasChildNodes())
-            {
-                Parent.removeChild(Parent.firstChild);
-            }
-            arr2 = JSON.parse(localStorage.getItem("messages"));
-            for(let i = 0; i < arr2.length; i++){
-                var r = Parent.insertRow();
-                var cell1 = r.insertCell();
-                var cell2 = r.insertCell();
-                var cell3 = r.insertCell();
-
-                cell1.innerHTML = "ID: ".bold()+arr2[i].id;
-                cell2.innerHTML = "MESSAGE: ".bold()+arr2[i].message;
-                cell3.innerHTML = "DESTINATARI: ".bold()+arr2[i].destinatari;
-            }
-        } */
-
-        // Carregar amb firebase
+    $.fn.carregaMissatges = function() {
         var llista2 = new MessagesList();
-        var Parent = document.getElementById('taulaMissatges');
 
-        while(Parent.hasChildNodes())
-        {
-            Parent.removeChild(Parent.firstChild);
-        }
+        $('#taulaMissatges > tr').remove();
         const data = llista2.obtenirDades();
-        
         data.then(
             function(value) {
                 const newArr = value.filter((a) => a);
                 for (let i = 0; i < newArr.length; i++) {
-                    var r = Parent.insertRow();
-                    var cell1 = r.insertCell();
-                    var cell2 = r.insertCell();
-                    var cell3 = r.insertCell();
-                    cell1.innerHTML = "ID: ".bold() + newArr[i].id;
-                    cell2.innerHTML = "MISSATGE: ".bold()+ newArr[i].message;
-                    cell3.innerHTML = "DESTINATARI: ".bold()+newArr[i].destinatari;
+                    $('#taulaMissatges').append('<tr><td>' + "ID: ".bold() + newArr[i].id +'</td><td>'+"MISSATGE: ".bold() + newArr[i].message + '</td><td>' + "DESTINATARI: ".bold()+ newArr[i].destinatari + '</td></tr>');
                 }
             }
         );
     }
 
-    carregaGrups();
-    carregaMissatges();
-
+    $('.formulari').carregaGrups();
+    $('.formulari').carregaMissatges();
     
-    // Configuració dels botons
-    document.querySelector("#boto1").addEventListener("click"  ,() => {
-
+    $("#boto1").on("click" , (event) => {
         let llista = new GroupsList();
-        var value = document.getElementById("grup").value;
+        var value = $("#grup").val();
 
         llista.delGroup(value);
-        carregaGrups();
+        $('.formulari').carregaGrups();
 
     });
 
-    document.querySelector("#boto2").addEventListener("click"  ,() => {
-        
+    $("#boto2").on("click" , (event) => {
         let llista = new GroupsList();
-        var value = document.getElementById("grup").value;
+        var value = $("#grup").val();
 
         llista.findGroup(llista,value);
     });
 
-    document.querySelector("#boto3").addEventListener("click"  ,() => {
-
+    $("#boto3").on("click" , (event) => {
         let llista = new GroupsList();
-        var value = document.getElementById("grup").value;
+        var value = $("#grup").val();
         let nou = prompt("Introdueix el nou grup");
         
         let objGrp = new Groups(value, nou, value);
-
-        // llista.editGroup(value,nou)
-        
         llista.setGroup(value, objGrp)
-        carregaGrups();
-
-        
+        $('.formulari').carregaGrups();
     });
 
-
-    document.querySelector("#boto4").addEventListener("click"  ,() => {
-
+    $("#boto4").on("click" , (event) => {
         let llista = new MessagesList();
-        var value = document.getElementById("msg").value;
+        var value = $("#msg").val();
 
         llista.delMessage(value);
-        carregaMissatges();
+        $('.formulari').carregaMissatges();
     });
 
-    document.querySelector("#boto5").addEventListener("click"  ,() => {
-        
+    $("#boto5").on("click" , (event) => {
         let llista = new MessagesList();
-        var value = document.getElementById("msg").value;
+        var value = $("#msg").val();
 
         llista.findMessage(llista, value);
 
     });
 
-    document.querySelector("#boto6").addEventListener("click"  ,() => {
+    $("#boto6").on("click" , (event) => {
         
         let llista = new MessagesList();
-        var idUsuari = document.getElementById("msg").value;
+        var idUsuari = $("#msg").val();
         let nou = prompt("Introdueix el nou missatge");
 
         const data = llista.obtenirDades();
@@ -206,7 +104,7 @@ export const formulario01 = () => {
 
                         let objMsg = new Messages(id, author, nou, created, pubpriv, destinatari)
                         llista.setMessage(idUsuari, objMsg)
-                        carregaMissatges();
+                        $('.formulari').carregaMissatges();
                         break;
                         
                     }
@@ -214,36 +112,23 @@ export const formulario01 = () => {
             }
         )
         
-        /* llista.editMessage(idUsuari,nou) */
-        
     });
 
 
-    document.querySelector("#boto7").addEventListener("click"  ,() => {
+    $("#boto7").on("click" , (event) => {
 
         let llista = new MessagesList();
-        var Parent = document.getElementById('taulaFiltratge');
-
-        while(Parent.hasChildNodes())
-        {
-            Parent.removeChild(Parent.firstChild);
-        }
+        $('#taulaFiltratge > tr').remove();
 
         const data = llista.obtenirDades();
-
         data.then(
             function(value) {
-                var valor = document.getElementById("msgf").value;
-                const data2 = llista.filtraMessagesPerText(value, valor);
+                var valor = $("#msgf").val();
+                const newArr = value.filter((a) => a);
+                const data2 = llista.filtraMessagesPerText(newArr, valor);
 
                 for (let i = 0; i < data2.length; i++) {
-                    var r = Parent.insertRow();
-                    var cell1 = r.insertCell();
-                     var cell2 = r.insertCell();
-                     var cell3 = r.insertCell();
-                     cell1.innerHTML = "ID: ".bold() + data2[i].id;
-                     cell2.innerHTML = "MISSATGE: ".bold()+ data2[i].message;
-                     cell3.innerHTML = "DESTINATARI: ".bold()+data2[i].destinatari;
+                    $('#taulaFiltratge').append('<tr><td>' + "ID: ".bold() + data2[i].id +'</td><td>'+"MISSATGE: ".bold() + data2[i].message + '</td><td>' + "DESTINATARI: ".bold()+ data2[i].destinatari + '</td></tr>');
                  }
              }
         );
