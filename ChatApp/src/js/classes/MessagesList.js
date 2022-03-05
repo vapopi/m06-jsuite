@@ -5,9 +5,9 @@ export class MessagesList {
         this.loadLocalStorage();
     }
 
-    autoincrementId() {
-        
-        return this.messages.length+7;
+    autoincrementId(llista) {
+        /* return this.messages.length; */
+        return llista[llista.length - 1].id + 1;
     }
 
     addMessage(message) {

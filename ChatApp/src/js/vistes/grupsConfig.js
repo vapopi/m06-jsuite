@@ -9,14 +9,17 @@ export const formulario03 = () => {
     document.querySelector("#botoEnviar2").addEventListener("click"  ,() => {
         
         event.preventDefault();
-        
-        var nameGroup = document.getElementById('missatge').value;
-        
-        let objGrp = new Groups(llistaG.autoincrementId(), nameGroup, llistaG.autoincrementId()+1);
-        llistaG.setGroup(llistaG.autoincrementId(), objGrp);
-        console.log(llistaG)
 
-        alert("Grup creat amb exit");
+        
+        var nameGroup = document.getElementById('missatgeg').value;
+        const data3 = llistaG.obtenirDades();
 
+        data3.then(
+            function(value) {
+                let objGrp = new Groups(llistaG.autoincrementId(value), nameGroup, llistaG.autoincrementId(value));
+                llistaG.setGroup(llistaG.autoincrementId(value), objGrp);
+                alert("Grup creat amb exit");
+            }
+        )
     });
 }

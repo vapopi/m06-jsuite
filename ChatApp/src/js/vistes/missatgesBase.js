@@ -25,7 +25,6 @@ export const formulario1 = () =>
 
                     <div class="formulari__grup"><label for="missatge">Missatge</label><input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="missatge" name="missatge"/></div><br>
                     <div class="formulari__grup"><button type="button" id="botoEnviar" class="btn btn-primary">Enviar</button></div>
-                    <a href="/"><div class="formulari__grup"><button type="button" class="btn btn-primary">Torna Enrere</button></div></a>
                 </form>
             </div>
         </div>

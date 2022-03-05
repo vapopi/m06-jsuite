@@ -6,7 +6,6 @@ export var formulario0 = () =>
             <h1>ChatApp - Llistats</h1>
         </div>
         <div class="formulari__contingut">
-            <a href="/"><div class="formulari__grup"><button type="button" class="btn btn-primary">Torna Enrere</button></div></a>
             <div class="container">
                 <form>
 

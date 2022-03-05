@@ -233,8 +233,9 @@ export const formulario01 = () => {
 
         data.then(
             function(value) {
+                const newArr = value.filter((a) => a);
                 var valor = document.getElementById("msgf").value;
-                const data2 = llista.filtraMessagesPerText(value, valor);
+                const data2 = llista.filtraMessagesPerText(newArr, valor);
 
                 for (let i = 0; i < data2.length; i++) {
                     var r = Parent.insertRow();

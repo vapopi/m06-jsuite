@@ -34,14 +34,15 @@ body {
 
 .formulari {
   background: white;
-  width: 600px;
-  height: 750px;
+  width: 50%;
+  height: 20%;
   border-radius: 9px;
+  margin: 0 auto;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   display: inline-block;
-  margin-top: 3%;
+  margin-top: 1%;
   font-family: "JSuiteFont-Subtitle";
-  margin-left: 33%;
+  margin-left: 23%;
   overflow: auto;
 }
 
@@ -100,6 +101,24 @@ body {
   line-height: inherit;
   text-transform: uppercase;
   cursor: pointer;
+}
+.botoneraa{
+  margin: 0 auto;
+  background-color: white;
+}
+#botoGrups{
+  margin: 0 auto;
+  width: 30% !important;
+}
+
+#botoMissatges{
+  margin: 0 auto;
+  width: 30% !important;
+}
+
+#botoLlistes{
+  margin: 0 auto;
+  width: 30% !important
 }
 
 .formulari__grup button {
