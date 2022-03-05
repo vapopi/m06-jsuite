@@ -135,9 +135,14 @@ export const formulario01 = () => {
 
         let llista = new GroupsList();
         var value = document.getElementById("grup").value;
+        if(value.length > 0)
+        {
+            llista.delGroup(value);
+            carregaGrups();
+        }else{
+            alert("Indica un ID")
+        }
 
-        llista.delGroup(value);
-        carregaGrups();
 
     });
 
@@ -145,22 +150,31 @@ export const formulario01 = () => {
         
         let llista = new GroupsList();
         var value = document.getElementById("grup").value;
-
-        llista.findGroup(llista,value);
+        if(value.length > 0)
+        {
+            llista.findGroup(llista,value);
+        }else{
+            alert("Indica un ID")
+        }
     });
 
     document.querySelector("#boto3").addEventListener("click"  ,() => {
 
         let llista = new GroupsList();
         var value = document.getElementById("grup").value;
-        let nou = prompt("Introdueix el nou grup");
-        
-        let objGrp = new Groups(value, nou, value);
+        if(value.length > 0)
+        {
+            let nou = prompt("Introdueix el nou grup");
+            
+            let objGrp = new Groups(value, nou, value);
 
-        // llista.editGroup(value,nou)
-        
-        llista.setGroup(value, objGrp)
-        carregaGrups();
+            // llista.editGroup(value,nou)
+            
+            llista.setGroup(value, objGrp)
+            carregaGrups();
+        }else{
+            alert("Indica un ID")
+        }
 
         
     });
@@ -170,17 +184,25 @@ export const formulario01 = () => {
 
         let llista = new MessagesList();
         var value = document.getElementById("msg").value;
-
-        llista.delMessage(value);
-        carregaMissatges();
+        if(value.length > 0)
+        {
+            llista.delMessage(value);
+            carregaMissatges();
+        }else{
+            alert("Indica un ID")
+        }
     });
 
     document.querySelector("#boto5").addEventListener("click"  ,() => {
         
         let llista = new MessagesList();
         var value = document.getElementById("msg").value;
-
-        llista.findMessage(llista, value);
+        if(value.length > 0)
+        {
+            llista.findMessage(llista, value);
+        }else{
+            alert("Indica un ID")
+        }
 
     });
 
@@ -188,31 +210,36 @@ export const formulario01 = () => {
         
         let llista = new MessagesList();
         var idUsuari = document.getElementById("msg").value;
-        let nou = prompt("Introdueix el nou missatge");
+        if(idUsuari.length > 0)
+        {
+            let nou = prompt("Introdueix el nou missatge");
 
-        const data = llista.obtenirDades();
-        data.then(
-            function(value) {
-                let id, author, created,pubpriv, destinatari
+            const data = llista.obtenirDades();
+            data.then(
+                function(value) {
+                    let id, author, created,pubpriv, destinatari
 
-                const newArr = value.filter((a) => a);
-                for(let i = 0; i < newArr.length; i++){
-                    if(newArr[i].id == idUsuari){
-                        id = newArr[i].id;
-                        author = newArr[i].author_id;
-                        created = newArr[i].created;
-                        pubpriv = newArr[i].pubpriv;
-                        destinatari = newArr[i].destinatari;
+                    const newArr = value.filter((a) => a);
+                    for(let i = 0; i < newArr.length; i++){
+                        if(newArr[i].id == idUsuari){
+                            id = newArr[i].id;
+                            author = newArr[i].author_id;
+                            created = newArr[i].created;
+                            pubpriv = newArr[i].pubpriv;
+                            destinatari = newArr[i].destinatari;
 
-                        let objMsg = new Messages(id, author, nou, created, pubpriv, destinatari)
-                        llista.setMessage(idUsuari, objMsg)
-                        carregaMissatges();
-                        break;
-                        
+                            let objMsg = new Messages(id, author, nou, created, pubpriv, destinatari)
+                            llista.setMessage(idUsuari, objMsg)
+                            carregaMissatges();
+                            break;
+                            
+                        }
                     }
                 }
-            }
-        )
+            )
+        }else{
+            alert("Indica un ID")
+        }
         
         /* llista.editMessage(idUsuari,nou) */
         
