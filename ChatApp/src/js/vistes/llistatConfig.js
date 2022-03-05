@@ -42,8 +42,8 @@ export const formulario01 = () => {
     
     $("#boto1").on("click" , (event) => {
         let llista = new GroupsList();
-        var value = $("#grup").val();
-
+        var value = $("#grupinpt").val();
+        console.log(value);
         llista.delGroup(value);
         $('.formulari').carregaGrups();
 
@@ -51,14 +51,14 @@ export const formulario01 = () => {
 
     $("#boto2").on("click" , (event) => {
         let llista = new GroupsList();
-        var value = $("#grup").val();
+        var value = $("#grupinpt").val();
 
         llista.findGroup(llista,value);
     });
 
     $("#boto3").on("click" , (event) => {
         let llista = new GroupsList();
-        var value = $("#grup").val();
+        var value = $("#grupinpt").val();
         let nou = prompt("Introdueix el nou grup");
         
         let objGrp = new Groups(value, nou, value);

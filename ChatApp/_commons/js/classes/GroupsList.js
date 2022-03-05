@@ -5,9 +5,10 @@ export class GroupsList {
         this.loadLocalStorage();
     }
 
-    autoincrementId() {
-        let id = this.groups.length+6;
-        return id;
+    autoincrementId(llista) {
+        /* return this.groups.length; */
+        return llista[llista.length - 1].id + 1;
+
     }
 
     addGroup(group) {

@@ -66,19 +66,23 @@ export const formulario02 = () => {
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         
-        if($('#opcio1').is(':checked')) {
-            var grup = $('#grup option:selected').text();
-            let objMsg = new Messages(llista.autoincrementId(), 1, message, date+" "+time, seleccionado, grup);
-            llista.setMessage(llista.autoincrementId(), objMsg);
-            console.log(llista.autoincrementId())
-        }else{
-            var usuari = $('#destinatari option:selected').text();
-            let objMsg = new Messages(llista.autoincrementId(), 1, message, date+" "+time, seleccionado, usuari);
-            llista.setMessage(llista.autoincrementId(), objMsg);
-            console.log(llista)
-        }
+        const data = llista.obtenirDades();
+        data.then(
+            function(value) {
+                if($('#opcio1').is(':checked')) {
+                    var grup = $('#grup option:selected').text();
+                    let objMsg = new Messages(llista.autoincrementId(value), 1, message, date+" "+time, seleccionado, grup);
+                    llista.setMessage(llista.autoincrementId(value), objMsg);
+                    console.log(llista.autoincrementId(value))
+                }else{
+                    var usuari = $('#destinatari option:selected').text();
+                    let objMsg = new Messages(llista.autoincrementId(value), 1, message, date+" "+time, seleccionado, usuari);
+                    llista.setMessage(llista.autoincrementId(value), objMsg);
+                    console.log(llista)
+                }
 
-        alert("Missatge enviat amb exit");
-    
+                alert("Missatge enviat amb exit");
+            }
+        )
     });
 }

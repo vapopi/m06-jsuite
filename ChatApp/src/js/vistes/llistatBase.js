@@ -1,6 +1,6 @@
 export let formulario0 = $("<div></div>", {
 
-    id: "divPrincipal",
+    id: "divPrincipall",
     class: "llistat",
     html: `<div class="formulari">
     <div class="formulari__panell">
@@ -8,14 +8,13 @@ export let formulario0 = $("<div></div>", {
             <h1>ChatApp - Llistats</h1>
         </div>
         <div class="formulari__contingut">
-            <a href="/"><div class="formulari__grup"><button type="button" class="btn btn-primary">Torna Enrere</button></div></a>
             <div class="container">
                 <form>
 
                     <h4>GRUPS</h4><br>
                         <table class="table" id="taulaGrups">
                         </table><br>
-                    <div class="formulari__grup"><label for="missatge">ID del grup</label><input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="grup" name="missatge"/></div><br>
+                    <div class="formulari__grup"><label for="missatge">ID del grup</label><input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="grupinpt" name="missatge"/></div><br>
                     <div class="formulari__grup"><button type="button" id="boto1" class="btn btn-primary">Esborrar</button></div>
                     <div class="formulari__grup"><button type="button" id="boto2" class="btn btn-primary">Visualitzar</button></div>
                     <div class="formulari__grup"><button type="button" id="boto3" class="btn btn-primary">Modificar</button></div><br>

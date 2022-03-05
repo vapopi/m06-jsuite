@@ -11,26 +11,32 @@ import { header1,footer1 } from "./headerfooter";
 export const formulario2 = () => {
 
     $("body").append(formulario00)
+
+    $("body").append(formulario1)
+    formulario02();
     
     $("#botoLlistes").on("click",function() {
-        $("#divPrincipal").hide();
+        $("#divPrincipalm").hide();
+        $("#divPrincipalg").hide();
+        $("#divPrincipall").show();
         $("body").append(formulario0)
         formulario01();
-        footer1();
     });   
 
     $("#botoMissatges").on("click",function() {
-        $("#divPrincipal").hide();
+        $("#divPrincipall").hide();
+        $("#divPrincipalg").hide();
+        $("#divPrincipalm").show();
         $("body").append(formulario1);
         formulario02();
-        footer1();
     });  
     
     $("#botoGrups").on("click",function() {
-        $("#divPrincipal").hide();
+        $("#divPrincipall").hide();
+        $("#divPrincipalm").hide();
+        $("#divPrincipalg").show();
         $("body").append(formulario3);
         formulario03();
-        footer1();
     }); 
 
 }

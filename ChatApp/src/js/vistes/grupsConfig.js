@@ -9,11 +9,16 @@ export const formulario03 = () => {
     $("#botoEnviar2").on("click" , (event) => {
         event.preventDefault();
         
-        var nameGroup = $('#missatge').val();
-        let objGrp = new Groups(llistaG.autoincrementId(), nameGroup, llistaG.autoincrementId());
-        llistaG.setGroup(llistaG.autoincrementId(), objGrp);
+        var nameGroup = $('#missatgeg').val();
+        const data3 = llistaG.obtenirDades();
 
-        alert("Grup creat amb exit");
+        data3.then(
+            function(value) {
+                let objGrp = new Groups(llistaG.autoincrementId(value), nameGroup, llistaG.autoincrementId(value));
+                llistaG.setGroup(llistaG.autoincrementId(value), objGrp);
+                alert("Grup creat amb exit");
+            }
+        )
 
     });
 }
