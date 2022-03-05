@@ -9,7 +9,7 @@ export const formulario01 = () => {
     function carregaGrups() {
 
         // Carregar amb localstorage
-/*         var arr1 = new Array();
+/*          var arr1 = new Array();
 
         var Parent = document.getElementById('taulaGrups');
 
