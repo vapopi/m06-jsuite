@@ -35,7 +35,7 @@ export function CreaHTMLFormulariAfegir(){
                 <tr>
                     <td>ID</td>
                     <td>Titol</td>
-                    <td>Descripcio</td>
+                    <td>Descripció</td>
                     <td>Author_id</td>
                     <td>Ticket_id</td>
                     <td>Creat</td>
@@ -78,8 +78,6 @@ export function CreaHTMLFormulariAfegir(){
         }
         else{
             var newIndex = parseInt(llistaboards.lastIndex()) + 1
-
-            console.log(newIndex)
 
             var boards = new Board(newIndex,titol.value,descripcio.value,"2018","2019",cont,opcion.value,"2020");
             

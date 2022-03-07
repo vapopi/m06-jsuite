@@ -70,15 +70,14 @@ export class LlistaBoards{
     }
 
     getDescripcio(id){
-        for(let i of this.board)
-        {
-            if(i.id == id)
-            {
-                return i.descripcio
+        for(let i of this.board){
+            if(i.id == id){
+                return i.descripcio;
+
             }
         }
        
-        return "Descripció";     
+        return "Descripcio";
     }
 
     getTicketId(id){
