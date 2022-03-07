@@ -53,7 +53,7 @@ export function CreaHTMLFormulariAfegir(){
                     <th>${llistaboards.getAuthorId(a)}</th>
                     <th>${llistaboards.getTicketId(a)}</th>
                     <th>${llistaboards.getCreat(a)}</th>
-                    <td><button class="delete">🗑️</button><button class="update btn btn-primary">✏️</button><button class="btn btn-success">😌😀</button></td>
+                    <td><button class="delete btn btn-danger">🗑️</button><button class="update btn btn-primary">✏️</button><button class="btn btn-success">😌😀</button></td>
                 </tr>`
     })
  
