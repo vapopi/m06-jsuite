@@ -1,15 +1,13 @@
 export class LlistaBoards{
 
-//    board;
-
-//    constructor(B0ard){
-//        this.board = B0ard;
-        
-//    }
+    board
+    
 
     constructor(){
-        this.getLocalStorage();
+        this.board = [];
 
+        this.getLocalStorage();
+        
     }
 
     postBlog(blog){
@@ -60,7 +58,7 @@ export class LlistaBoards{
         return "AuthorId";
     }
 
-    getTitle(id){
+    getTitol(id){
         for(let i of this.board){
             if(i.id == id){
                 return i.title;
@@ -71,7 +69,7 @@ export class LlistaBoards{
         return "Titol";
     }
 
-    getDescription(id){
+    getDescripcio(id){
         for(let i of this.board)
         {
             if(i.id == id)
@@ -92,6 +90,15 @@ export class LlistaBoards{
         }
     }
 
+    getCreat(id){
+        for(let i of this.board){
+            if(i.id == id){
+                return i.created
+            }
+        }
+        return "created"
+    }
+
     update(id,updates){
         this.board[id].descripcio = updates[1]
         this.board[id].title = updates[0]
@@ -100,59 +107,8 @@ export class LlistaBoards{
     }
 
     delete(id,table){
-       
-        let lsitem = localStorage.getItem("board");
-        let conf = JSON.parse(lsitem);
-       
-        for (var i in conf){
-            var confId = conf[i].id
-            if(confId == id){   
-                this.board.splice(i,1);
-                this.setLocalStorage();
-                break;
-            }
-        }
-
+        this.board.splice(id,1);
+        this.setLocalStorage();
         location.reload();
-    }
-
-    filtraBoards(text){
-    let torna= this.board.filter((element) => {
-        if (element.title.match(new RegExp(text,"i"))
-        || element.descripcio.match(new RegExp(text,"i"))) 
-        return true;
-        })
-        
-        return torna;
-    }
-
-    async setBoard(board,id)
-    {
-        try{
-            const res = await fetch('https://jsuite04-default-rtdb.firebaseio.com/boards/'+ id + '.json',
-            {
-                method:'PUT',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-
-                body:JSON.stringify(board),
-                
-            })
-            
-        }catch(error){
-            console.log("Error")
-        }
-    }
-
-    async delBoard(id) {
-        try{
-            const res= await fetch('https://jsuite04-default-rtdb.firebaseio.com/boards/'+ id +'.json',
-            {
-                method:'DELETE',
-            })
-        }catch(error){
-
-        }
     }
 }

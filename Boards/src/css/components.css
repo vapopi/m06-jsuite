@@ -194,7 +194,16 @@ h2.capçalera__nom{
   font-family: "JSuiteFont-Subtitle";
 }
 
-.foot{
-  margin-top: 2%;
-
+table{
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
 }
+
+th, td{
+	padding: 15px;
+	color: #fff;
+  background-color: #0083ff;
+  font-weight: bold;
+}
+
